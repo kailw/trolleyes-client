@@ -1,0 +1,13 @@
+.alineacion {
+    text-align: center;
+}
+
+.primeraParte, .segundaParte, terceraParte{
+    margin-top: 25px;    
+    margin-bot: 25px;
+}
+
+
+.mensaje {
+    margin:15px;
+}
