@@ -19,7 +19,7 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
                     $http({
                         method: "GET",
                         withCredential: true,
-                        url: "http://localhost:8080/trolleyes/json?ob=producto&op=fill&numero=" + $scope.numeroInsertar
+                        url: "http://localhost:8081/trolleyes/json?ob=producto&op=fill&numero=" + $scope.numeroInsertar
                     }).then(function (response) {
                 $scope.status = response.status;
                 if ($scope.numeroInsertar == 1) {
@@ -39,7 +39,7 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
                     $http({
                         method: "GET",
                         withCredential: true,
-                        url: "http://localhost:8080/trolleyes/json?ob=tipousuario&op=getpage&rpp=" + $scope.numeroRegistrosPagina + "&page=" + $scope.numeroPagina
+                        url: "http://localhost:8081/trolleyes/json?ob=tipousuario&op=getpage&rpp=" + $scope.numeroRegistrosPagina + "&page=" + $scope.numeroPagina
                     }).then(function (response) {
                 $scope.status = response.status;
                 $scope.jsonProductos = response.data.message;

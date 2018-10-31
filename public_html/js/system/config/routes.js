@@ -7,5 +7,5 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/plist', {templateUrl:'js/app/usuario/plist.html', controller: 'usuarioPlistController'});
         $routeProvider.when('/tipoproducto/plist', {templateUrl:'js/app/tipoproducto/plist.html', controller: 'tipoproductoPlistController'});
         $routeProvider.when('/tipousuario/edit/:id?', {templateUrl:'js/app/tipousuario/edit.html', controller: 'tipousuarioEditController'});
-        $routeProvider.otherwise({redirectTo: '/'});
+        $routeProvider.otherwise({redirectTo: '/'});       
     }]);

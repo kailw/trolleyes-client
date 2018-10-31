@@ -23,7 +23,7 @@
             <h4>Número de registros por página:</h4> 
         </div>
         <div class="col-2">                               
-            <select class="custom-select" ng-model="numeroRegistrosPagina">
+            <select class="custom-select" ng-model="numeroRegistrosPagina" ng-change="elegirPagina()">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="25">25</option>
@@ -35,7 +35,9 @@
             <h4>Página a mostrar :</h4> 
         </div>
         <div class="col-1">
-            <input type="text" class="form-control" ng-model="numeroPagina">
+            <select ng-model="pagina" ng-change="elegirPagina()" class="form-control">
+                <option ng-repeat="option in arrayPages" value="{{(arrayPages.indexOf(option)+1)}}">{{option}}</option>
+            </select>
         </div>
         <div class="col-2">
             <button ng-click="mostrarProductos()" class="btn btn-info">Mostrar Productos</button>
@@ -45,17 +47,17 @@
     <h3 class="{{cssAlertSuccessDos}} mensaje">{{jsonMensajesProductos2}} </h3>
     <div class="terceraParte">
 
-        <div class="row form-group text-center">
+<!--        <div class="row form-group text-center">
             <div class="col-4 mx-auto">
                 <label>Número de página</label>
                 <select ng-model="pagina" ng-change="elegirPagina()" class="form-control">
                     <option ng-repeat="option in arrayPages" value="{{(arrayPages.indexOf(option) + 1)}}">{{option}}</option>
                 </select>
             </div>
-        </div>
-        
+        </div>-->
+
         <table class="table table-striped table-hover">
-            <caption>Lista de Productos</caption
+            <caption>Lista de Productos</caption>
             <tr class="alineacion">
                 <th>ID</th>
                 <th>CÓDIGO</th>
@@ -64,6 +66,7 @@
                 <th>PRECIO</th>
                 <th>FOTO</th>
                 <th>ID_TIPOPRODUCTO</th>
+                <th>Ver</th>
             </tr>
             <tr ng-show="ocultarProductos" ng-repeat="producto in jsonProductos">
                 <th class="alineacion">{{producto.id}}</th>
@@ -73,8 +76,9 @@
                 <td>{{producto.precio}} €</td>
                 <td>{{producto.foto}}</td>
                 <td>{{producto.id_tipoProducto}}</td>                
+                <td><button style="font-size:15px" class="btn btn-danger"> <i class="fa fa-eye"></i></td>                                     
             </tr>
-        </table> 
+        </table>         
 
     </div>
 

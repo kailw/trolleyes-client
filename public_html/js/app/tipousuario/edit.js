@@ -19,7 +19,7 @@ moduleTipousuario.controller('tipousuarioEditController', ['$scope', '$http', '$
             $http({
                 method: 'GET',
                 //withCredentials: true,
-                url: 'http://localhost:8080/trolleyes/json?ob=tipousuario&op=getpage&rpp=10&page=1'
+                url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=getpage&rpp=10&page=1'
             }).then(function (response) {
                 $scope.status = response.status;
                 $scope.ajaxDataUsuarios = response.data.message;
@@ -31,7 +31,7 @@ moduleTipousuario.controller('tipousuarioEditController', ['$scope', '$http', '$
         $http({
             method: 'GET',
             //withCredentials: true,
-            url: 'http://localhost:8080/trolleyes/json?ob=tipousuario&op=get&id=2'
+            url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=get&id=2'
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxData = response.data.message;

@@ -2,26 +2,25 @@
 
 moduleProducto.controller('productoPlistController', ['$scope', '$http', '$location', 'toolService',
     function ($scope, $http, $location, toolService) {
-        $scope.pagina = "1";
-        $scope.numeroRegistrosPagina = "5";
+        $scope.pagina = "";
+        $scope.numeroRegistrosPagina = "";
         $scope.limpiar = function () {
-            $scope.numeroInsertar = "";
-            $scope.numeroPagina = "";
+            $scope.numeroInsertar = "";            
             $scope.numeroRegistrosPagina = "";
             $scope.cssAlertSuccessUno = "";
             $scope.cssAlertSuccessDos = "";
             $scope.jsonMensajesProductos1 = "";
             $scope.jsonMensajesProductos2 = "";
             $scope.jsonProductos = "";
-            $scope.pagina = "1";
-            $scope.numeroRegistrosPagina = "5";
+            $scope.pagina = "";
+            
         }
         $scope.crearProductos = function () {
             $scope.cssAlertSuccessUno = "alert alert-success",
                     $http({
                         method: "GET",
                         withCredential: true,
-                        url: "http://localhost:8080/trolleyes/json?ob=producto&op=fill&numero=" + $scope.numeroInsertar
+                        url: "http://localhost:8081/trolleyes/json?ob=producto&op=fill&numero=" + $scope.numeroInsertar
                     }).then(function (response) {
                 $scope.status = response.status;
                 if ($scope.numeroInsertar == 1) {
@@ -39,13 +38,12 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
 
 
 
-        $scope.mostrarProductos = function () {
-            $scope.pagina = "1";
+        $scope.mostrarProductos = function () {                        
             $scope.ocultarProductos = true,
                     $http({
                         method: "GET",
                         withCredential: true,
-                        url: "http://localhost:8080/trolleyes/json?ob=producto&op=getpage&rpp=" + $scope.numeroRegistrosPagina + "&page=" + $scope.pagina
+                        url: "http://localhost:8081/trolleyes/json?ob=producto&op=getpage&rpp=" + $scope.numeroRegistrosPagina + "&page=" + $scope.pagina
                     }).then(function (response) {
                 $scope.status = response.status;
                 $scope.jsonProductos = response.data.message;
@@ -54,33 +52,9 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
                 $scope.jsonMensajesProductos2 = "Debes introducir al menos un número";
                 $scope.status = response.status;
             });
-            $http({
-                method: 'GET',
-                withCredentials: true,
-                url: "http://localhost:8080/trolleyes/json?ob=producto&op=getcount"
-            }).then(function (response) {
-                $scope.status = response.status;
-                $scope.numeroRegistros = response.data.message;
-                $scope.numeroPaginas = Math.ceil($scope.numeroRegistros / $scope.numeroRegistrosPagina);
-                $scope.arrayPages = [];
-                for (var i = 1; i <= $scope.numeroPaginas; i++) {
-                    $scope.arrayPages.push(i);
-                }
-                if (!$scope.mostrar) {
-                    $scope.mostrar = !$scope.mostrar;
-                }
-                if ($scope.activar) {
-                    $scope.activar = !$scope.activar;
-                }
-            }, function (response) {
-                $scope.numeroRegistros = response.data.message || 'Request failed';
-                $scope.status = response.status;
-            });
         };
 
-
-
-        $scope.elegirPagina = function () {
+        $scope.elegirPagina = function () {            
             $http({
                 method: 'GET',
                 withCredentials: true,
@@ -90,6 +64,22 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
                 $scope.jsonProductos = response.data.message;
             }, function (response) {
                 $scope.jsonProductos = response.data.message || 'Request failed';
+                $scope.status = response.status;
+            });
+            $http({
+                method: 'GET',
+                withCredentials: true,
+                url: "http://localhost:8081/trolleyes/json?ob=producto&op=getcount"
+            }).then(function (response) {
+                $scope.status = response.status;
+                $scope.numeroRegistros = response.data.message;
+                $scope.numeroPaginas = Math.ceil($scope.numeroRegistros / $scope.numeroRegistrosPagina);
+                $scope.arrayPages = [];
+                for (var i = 1; i <= $scope.numeroPaginas; i++) {
+                    $scope.arrayPages.push(i);
+                }
+            }, function (response) {
+                $scope.numeroRegistros = response.data.message || 'Request failed';
                 $scope.status = response.status;
             });
         };
