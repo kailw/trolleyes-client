@@ -2,12 +2,18 @@
     text-align: center;
 }
 
-.primeraParte, .segundaParte, terceraParte{
-    margin-top: 25px;    
-    margin-bot: 25px;
+.primeraParte, terceraParte{
+    margin-top: 75px;    
+    margin-bot: 25px;    
+}
+.segundaParte {
+    margin-top: 30px;
 }
 
+.primeraPartev{
+    margin-top: 25px;    
 
+}
 .mensaje {
     margin:15px;
 }
