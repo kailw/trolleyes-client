@@ -3,29 +3,43 @@
 moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 'toolService',
     function ($scope, $http, $location, toolService) {
         $scope.ruta = $location.path();
+        $scope.numeroPagina = "1";
+        $scope.numeroRegistrosPagina = "10";
+        $scope.ajaxDatoLinea = "";
+
         $scope.limpiar = function () {
-            $scope.numeroInsertar = "";
             $scope.numeroPagina = "";
             $scope.numeroRegistrosPagina = "";
-            $scope.cssAlertSuccessUno = "";
-            $scope.cssAlertSuccessDos = "";
-            $scope.jsonMensajesProductos1 = "";
-            $scope.jsonMensajesProductos2 = "";
-            $scope.jsonProductos = "";
+            $scope.cssAlertSuccess = "";
+            $scope.ajaxMensajeLinea = "";
+            $scope.ajaxDatoLinea = "";
         }
 
-        $scope.mostrarProductos = function () {
-            $scope.ocultarProductos = true,
-                    $http({
-                        method: "GET",
-                        withCredential: true,
-                        url: "http://localhost:8081/trolleyes/json?ob=linea&op=getpage&rpp=" + $scope.numeroRegistrosPagina + "&page=" + $scope.numeroPagina
-                    }).then(function (response) {
+        $http({
+            method: "GET",
+            withCredential: true,
+            url: "http://localhost:8081/trolleyes/json?ob=linea&op=getpage&rpp=" + $scope.numeroRegistrosPagina + "&page=" + $scope.numeroPagina
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDatoLinea = response.data.message;
+        }, function (response) {
+            $scope.cssAlertSuccess = "alert alert-danger"
+            $scope.ajaxMensajeLinea = "Debes introducir al menos un número";
+            $scope.status = response.status;
+        });
+
+
+        $scope.mostrarDatos = function () {
+            $http({
+                method: "GET",
+                withCredential: true,
+                url: "http://localhost:8081/trolleyes/json?ob=linea&op=getpage&rpp=" + $scope.numeroRegistrosPagina + "&page=" + $scope.numeroPagina
+            }).then(function (response) {
                 $scope.status = response.status;
-                $scope.jsonProductos = response.data.message;
+                $scope.ajaxDatoLinea = response.data.message;
             }, function (response) {
-                $scope.cssAlertSuccessDos = "alert alert-danger"
-                $scope.jsonMensajesProductos2 = "Debes introducir al menos un número";
+                $scope.cssAlertSuccess = "alert alert-danger"
+                $scope.ajaxMensajeLinea = "Debes introducir al menos un número";
                 $scope.status = response.status;
             });
         }
