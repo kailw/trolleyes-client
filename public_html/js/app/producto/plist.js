@@ -78,7 +78,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
                 url: "http://localhost:8081/trolleyes/json?ob=producto&op=getpage&rpp=" + $scope.numeroRegistrosPagina + "&page=" + $scope.numeroPagina +
                         "&column=" + $scope.column + "&order=" + $scope.order
             }).then(function (response) {
-                $location.url(`producto/plist/` + $scope.numeroRegistrosPagina + `/` + $scope.numeroPagina + "/" + column + `/` + order);
+                $location.url("producto/plist/" + $scope.numeroRegistrosPagina + "/" + $scope.numeroPagina + "/" + column + "/" + order);
                 $scope.status = response.status;
                 $scope.ajaxDatoProducto = response.data.message;
             }, function (response) {
