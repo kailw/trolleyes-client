@@ -8,11 +8,7 @@
                     <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
                     <select class="form-control" 
                             ng-change="update()" 
-                            ng-model="rpp">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="50">50</option>
+                            ng-model="rpp" ng-options="value for value in select">
                     </select>
                 </div>
             </div>
@@ -39,20 +35,20 @@
             <nav aria-label="paginacion">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" ng-show="page > 2" href="usuario/plist/{{rpp}}/1/{{orderURLCliente}}}">First</a>
+                        <a class="page-link" ng-show="page > 1" href="usuario/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Previous</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" ng-show="page > 1" href="usuario/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Previous</a>
+                        <a class="page-link" ng-show="page > 2" href="usuario/plist/{{rpp}}/1/{{orderURLCliente}}">1</a>
                     </li>
                     <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
                         <a class="page-link" href="usuario/plist/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" ng-show="page != totalPages" href="usuario/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Next</a>
+                        <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="usuario/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="usuario/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">Last</a>
-                    </li>
+                        <a class="page-link" ng-show="page != totalPages" href="usuario/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Next</a>
+                    </li>                    
                 </ul>
             </nav>
         </div>
@@ -72,10 +68,10 @@
             <tr>
                 <th>
                     ID
-                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id', 'asc')">
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('u.id', 'asc')">
                         <i class="fas fa-long-arrow-alt-up"></i>
                     </button>
-                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id', 'desc')">
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('u.id', 'desc')">
                         <i class="fas fa-long-arrow-alt-down"></i>
                     </button>
                 </th>
@@ -127,10 +123,10 @@
                 </th>
                 <th>
                     Tipo de usuario
-                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id_tipoUsuario', 'asc')">
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('t.desc', 'asc')">
                         <i class="fas fa-long-arrow-alt-up"></i>
                     </button>
-                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id_tipoUsuario', 'desc')">
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('t.desc', 'desc')">
                         <i class="fas fa-long-arrow-alt-down"></i>
                     </button>
                 </th>
@@ -143,7 +139,7 @@
                 <td>{{fila.ape2}}</td>
                 <td>{{fila.login}}</td>                
                 <td>{{fila.obj_tipoUsuario.desc}}</td>  
-<!--                <td>{{fila.id_tipoUsuario}}</td>-->                
+                <td>{{fila.id_tipoUsuario}}</td>                
             </tr>
         </table>
 
