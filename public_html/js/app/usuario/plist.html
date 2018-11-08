@@ -68,10 +68,10 @@
             <tr>
                 <th>
                     ID
-                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('u.id', 'asc')">
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id', 'asc')">
                         <i class="fas fa-long-arrow-alt-up"></i>
                     </button>
-                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('u.id', 'desc')">
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id', 'desc')">
                         <i class="fas fa-long-arrow-alt-down"></i>
                     </button>
                 </th>
@@ -123,10 +123,10 @@
                 </th>
                 <th>
                     Tipo de usuario
-                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('t.desc', 'asc')">
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id_tipoUsuario', 'asc')">
                         <i class="fas fa-long-arrow-alt-up"></i>
                     </button>
-                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('t.desc', 'desc')">
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id_tipoUsuario', 'desc')">
                         <i class="fas fa-long-arrow-alt-down"></i>
                     </button>
                 </th>
@@ -138,8 +138,7 @@
                 <td>{{fila.ape1}}</td>
                 <td>{{fila.ape2}}</td>
                 <td>{{fila.login}}</td>                
-                <td>{{fila.obj_tipoUsuario.desc}}</td>  
-                <td>{{fila.id_tipoUsuario}}</td>                
+                <td>{{fila.obj_tipoUsuario.desc}}</td>                               
             </tr>
         </table>
 
