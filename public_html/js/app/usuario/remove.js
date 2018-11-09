@@ -14,6 +14,8 @@ moduleUsuario.controller('usuarioRemoveController', ['$scope', '$http', '$locati
             $scope.status = response.status;
         });
         $scope.tabla = true;
+        $scope.mensaje3 = true;
+
         $scope.eliminar = function (accion) {
             if (accion === "eliminar") {
                 $http({
@@ -22,6 +24,8 @@ moduleUsuario.controller('usuarioRemoveController', ['$scope', '$http', '$locati
                 }).then(function (response) {
                     $scope.mensaje = true;
                     $scope.mensaje2 = false;
+                    $scope.mensaje3 = false;
+                    $scope.tabla = false;
                     $scope.status = response.status;
                     $scope.ajaxDatoUsuario = response.data.message;
                 }, function (response) {
@@ -30,10 +34,11 @@ moduleUsuario.controller('usuarioRemoveController', ['$scope', '$http', '$locati
                 });
             } else {
                 $scope.mensaje2 = true;
+                $scope.mensaje3 = false;
                 $scope.mensaje = false;
                 $scope.tabla = true;
             }
-            
+
         };
 
     }]);
