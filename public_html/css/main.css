@@ -30,6 +30,7 @@ body > .container {
 .footer > .container {
     padding-right: 0px;
     padding-left: 0px;
+/*    margin-top: 100px;*/
 }
 
 code {
@@ -72,4 +73,9 @@ code {
 .css nav ul>li.page-item a {
   background: #99ABB1;
   color: black;
+}
+
+
+div[class*= "alert"]{
+    margin-top: 10px;
 }
