@@ -1,12 +1,12 @@
 'use strict';
 
-moduleTipousuario.controller('tipousuarioEditController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
+moduleTipousuario.controller('tipousuarioCreateController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
     function ($scope, $http, $location, toolService, $routeParams) {
         $scope.id = $routeParams.id;
         $scope.ob = "tipousuario";
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=get&id=' + $scope.id
+            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getcount'
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDatoTipousuario = response.data.message;
@@ -14,17 +14,17 @@ moduleTipousuario.controller('tipousuarioEditController', ['$scope', '$http', '$
             $scope.ajaxDatoTipousuario = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-
+                
 
         $scope.guardar = function () {
             var json = {
-                id: $scope.ajaxDatoTipousuario.id,
-                desc: $scope.ajaxDatoTipousuario.desc
+                id: null,
+                desc: $scope.desc
             }
             $http({
                 method: 'GET',
                 withCredentials: true,
-                url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=update',
+                url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=create',
                 params: {json: JSON.stringify(json)}
             }).then(function (response) {
                 $scope.status = response.status;

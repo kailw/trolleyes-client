@@ -9,36 +9,36 @@
             <caption>Usuarios remove</caption>
             <tr>
                 <th>ID</th>
-                <th>{{ajaxDatoUsuario.id}}</th>
+                <th>{{ajaxDatoProducto.id}}</th>
             </tr>   
             <tr>
-                <th>DNI</th>
-                <td>{{ajaxDatoUsuario.dni}}</td>
+                <th>Codigo</th>
+                <td>{{ajaxDatoProducto.codigo}}</td>
             </tr>
             <tr>
-                <th>NOMBRE</th>
-                <td>{{ajaxDatoUsuario.nombre}}</td>        
+                <th>Descripcion</th>
+                <td>{{ajaxDatoProducto.desc}}</td>        
             </tr>
             <tr>
-                <th>PRIMER APELLIDO</th>
-                <td>{{ajaxDatoUsuario.ape1}}</td>
+                <th>Existencias</th>
+                <td>{{ajaxDatoProducto.existencias}}</td>
             </tr>
             <tr>
-                <th>SEGUNDO APELLIDO</th>
-                <td>{{ajaxDatoUsuario.ape2}}</td>
+                <th>Precio</th>
+                <td>{{ajaxDatoProducto.precio}}</td>
             </tr>
             <tr>
-                <th>LOGIN</th>
-                <td>{{ajaxDatoUsuario.login}}</td>
+                <th>Foto</th>
+                <td>{{ajaxDatoProducto.foto}}</td>
             </tr>
             <tr>
-                <th>TIPO DE USUARIO</th>      
-                <td>{{ajaxDatoUsuario.obj_tipoUsuario.desc}}</td> 
+                <th>Tipo Producto</th>      
+                <td>{{ajaxDatoProducto.id_tipoProducto}}</td> 
             </tr>      
         </table>
     </div>
     <div ng-show="mensaje3">
-        <h3>Estas seguro de eliminar el registro {{ajaxDatoUsuario.id}} </h3>
+        <h3>Estas seguro de eliminar el registro {{ajaxDatoProducto.id}} </h3>
         <button class="btn btn-primary" ng-click="eliminar('eliminar')">Si</button>
         <button class="btn btn-danger" ng-click="eliminar('noeliminar')">No</button>
     </div>

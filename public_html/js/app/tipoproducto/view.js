@@ -1,17 +1,17 @@
 'use strict';
 
-moduleTipousuario.controller('tipousuarioViewController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
+moduleTipoproducto.controller('tipoproductoViewController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
     function ($scope, $http, $location, toolService, $routeParams) {
         $scope.id = $routeParams.id;
-        $scope.ob = "tipousuario";
+        $scope.ob = "tipoproducto";
         $http({
             method: 'GET',
             url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=get&id=' + $scope.id
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataTipousuario = response.data.message;
+            $scope.ajaxDataTipoproducto = response.data.message;
         }, function (response) {
-            $scope.ajaxDataTipousuario = response.data.message || 'Request failed';
+            $scope.ajaxDataTipoproducto = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
         $scope.isActive = toolService.isActive;

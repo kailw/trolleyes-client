@@ -1,17 +1,17 @@
 'use strict'
 
-moduleUsuario.controller('usuarioRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
+moduleProducto.controller('productoRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
     function ($scope, $http, $location, toolService, $routeParams) {
-        $scope.ob = "usuario";
+        $scope.ob = "producto";
         $scope.id = $routeParams.id;
         $http({
             method: 'GET',
             url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=get&id=' + $scope.id
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDatoUsuario = response.data.message;
+            $scope.ajaxDatoProducto = response.data.message;
         }, function (response) {
-            $scope.ajaxDatoUsuario = response.data.message || 'Request failed';
+            $scope.ajaxDatoProducto = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
         $scope.tabla = true;
@@ -28,9 +28,9 @@ moduleUsuario.controller('usuarioRemoveController', ['$scope', '$http', '$locati
                     $scope.mensaje3 = false;
                     $scope.tabla = false;
                     $scope.status = response.status;
-                    $scope.ajaxDatoUsuario = response.data.message;
+                    $scope.ajaxDatoProducto = response.data.message;
                 }, function (response) {
-                    $scope.ajaxDatoUsuario = response.data.message || 'Request failed';
+                    $scope.ajaxDatoProducto = response.data.message || 'Request failed';
                     $scope.status = response.status;
                 });
             } else {
